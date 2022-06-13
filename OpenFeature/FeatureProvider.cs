@@ -4,7 +4,7 @@ public interface IFeatureProvider
 {
     FeatureProviderMetadata Metadata { get; }
 
-    ResolutionDetails<bool> ResolveBooleanValue(string key);
+    ResolutionDetails<bool> ResolveBooleanValue(string key, bool defaultValue);
 }
 
 public class FeatureProviderMetadata
@@ -17,11 +17,12 @@ public class FeatureProviderMetadata
     string Name { get; }
 }
 
-
-
 // A no-op implementation of IFeatureProvider
 internal class NoOpFeatureProvider : IFeatureProvider
 {
+    const string Reason = "DEFAULT";
+    const string Variant = "Passed in default"; 
+    
     public NoOpFeatureProvider()
     {
         Metadata = new FeatureProviderMetadata("No-Op Provider");
@@ -29,8 +30,8 @@ internal class NoOpFeatureProvider : IFeatureProvider
     
     public FeatureProviderMetadata Metadata { get; }
     
-    public ResolutionDetails<bool> ResolveBooleanValue(string key)
+    public ResolutionDetails<bool> ResolveBooleanValue(string key, bool defaultValue)
     {
-        throw new NotImplementedException();
+        return new ResolutionDetails<bool>(defaultValue) { Reason = Reason, Variant = Variant};
     }
 }

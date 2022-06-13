@@ -26,6 +26,6 @@ sealed class Client : IClient
 
     public bool GetBooleanValue(string key, bool defaultValue)
     {
-        throw new NotImplementedException();
+        return OpenFeature.Provider.ResolveBooleanValue(key, defaultValue).Value;
     }
 }
