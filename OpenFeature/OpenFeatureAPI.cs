@@ -2,9 +2,9 @@ namespace OpenFeature;
 
 // https://github.com/open-feature/spec/blob/main/specification/flag-evaluation/flag-evaluation.md 
 // This class is a singleton: https://github.com/open-feature/spec/blob/main/specification/flag-evaluation/flag-evaluation.md#requirement-111  
-public sealed class OpenFeature
+public sealed class OpenFeatureAPI
 {
-    static OpenFeature()
+    static OpenFeatureAPI()
     {
         Provider = new NoOpFeatureProvider();
     }
